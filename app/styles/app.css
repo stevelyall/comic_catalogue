@@ -1,0 +1,44 @@
+/* Comics grid page styles */
+
+div.well {
+	margin-top: 5px;
+}
+
+#comicSearch {
+	float: none;
+	margin: 0 auto 10px auto;
+}
+
+#catalogueHeading {
+	text-align: center;
+}
+
+#catalogueHeading h2 {
+	margin-top: 0;
+}
+
+.short-title {
+	text-align: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+#footerLink {
+	display: block;
+	text-align: center;
+}
+
+/* Comic detail modal styles */
+.comic-detail-thumbnail {
+	margin: 0;
+}
+
+#comicDetailList div {
+	padding-left: 0;
+}
+
+.marvel-link-btn {
+	display: block;
+	margin: 5px auto auto 0;
+}

@@ -1,0 +1,60 @@
+<div class="container">
+	<div class="well">
+		<div id="catalogueHeading">
+			<h2>Comic Catalogue</h2>
+			<p ng-bind-html="attributionHTML"></p>
+		</div>
+		<!-- Comic search -->
+		<div class="row">
+			<form id="comicSearch" class="col-md-8">
+				<div class="input-group list-search">
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-search" id="seachicon"></span>
+						</span>
+					<input type="text" class="form-control" placeholder="Search Comics"
+					       aria-describedby="searchicon"
+					       ng-model="searchText">
+					<!-- clear button -->
+						<span class="input-group-addon" ng-click="searchText = ''">
+							<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+						</span>
+				</div>
+			</form>
+		</div>
+
+		<!-- Loading spinner -->
+		<img id="loadingSpinner" class="center-block" ng-show="isLoading" src="img/spinner.gif">
+
+		<!-- Empty filter message -->
+		<div ng-show="(comicList | filter: searchText).length == 0">
+			<h5>No comics found.</h5>
+			<p>Perhaps try changing your search criteria.</p>
+		</div>
+
+		<!-- Error alert -->
+		<uib-alert ng-show="isError" type="danger">An problem occurred retrieving comics.</uib-alert>
+
+		<!-- Comics grid -->
+		<div class="row" ng-repeat="comics in comicList | filter: searchText | groupBy: 5" ng-show="!isLoading">
+
+			<div class="col-xs-3" ng-repeat="comic in comics">
+				<div class="panel panel-default">
+					<div class="panel-body" ng-click="showComicDetails(comic)">
+						<img ng-show="comic" class="img-responsive comic-thumbnail center-block"
+						     ng-src="{{comic.thumbnail.path + '/portrait_xlarge.' +comic.thumbnail.extension}}">
+						<p class="short-title">{{comic.title}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" ng-show="!isLoading">
+			<button type="button" class="btn btn-default btn-sm center-block" ng-click="showMoreBtnClick()">
+				<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Show More
+			</button>
+		</div>
+
+	</div>
+
+	<a id="footerLink" href="https://ca.linkedin.com/in/stevelyall">Steve Lyall</a>
+</div>

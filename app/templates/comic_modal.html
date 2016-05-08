@@ -1,0 +1,55 @@
+<div ng-controller="ComicsController">
+	<div class="modal-header">
+		<h3 class="modal-title">{{comic.title}}</h3>
+	</div>
+
+	<div class="modal-body">
+		<div class="container-fluid">
+			<div class="row">
+				<!-- image -->
+				<div class="col-xs-4">
+					<img class="comic-thumbnail comic-detail-thumbnail img-responsive center-block"
+					     ng-src="{{comic.thumbnail.path + '/portrait_fantastic.' + comic.thumbnail.extension}}">
+
+					<a ng-href="{{comic.urls[0].url}}" target="_blank" class="btn btn-danger btn-sm marvel-link-btn"
+					   role="button" ng-show="comic.urls[0].type == 'detail'">
+						See it at Marvel.com
+					</a>
+				</div>
+
+				<!-- comic details -->
+				<div class="col-xs-8">
+
+					<div id="comicDetailList" class="row">
+						<div class="col-xs-4" ng-show="comic.issueNumber">
+							<p>
+								<span>Issue #:</span> {{comic.issueNumber}}
+							</p>
+						</div>
+						<div class="col-xs-5">
+							<p>
+								<span>Pages: {{comic.pageCount}}</span>
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<p>{{comic.description}}</p>
+						<p ng-show="!comic.description"> No description available.</p>
+						<p ng-repeat="creator in comic.creators.items">
+							<span><strong>{{creator.name}}</strong> - <em>{{creator.role}}</em></span>
+						</p>
+					</div>
+
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+
+	<div class="modal-footer">
+		<span ng-bind-html="attributionHTML" class="pull-left"></span>
+		<button class="btn btn-default" type="button" ng-click="close()">Close</button>
+	</div>
+
+</div>
